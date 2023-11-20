@@ -1,0 +1,71 @@
+---
+title: "CANIS data viz code"
+author: "GROUP NUMBER: ADD YOUR NAMES HERE"
+subtitle: "hackathon"
+date: "Insert Date Here"
+output:
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(viridis)
+#install.packages('packcircles')
+library(packcircles)
+library(reshape2)
+#install.packages('treemapify')
+library(treemapify)
+
+```
+
+
+
+```{r}
+#data
+data1 <- read_csv("CANIS_PRC_state_media.csv")
+```
+
+```{r}
+#General data cleaning
+condensed_data <- data1 %>% select(`Parent entity (English)`,`Region of Focus`, 'X (Twitter) Follower #', 'Facebook Follower #', 'Instagram Follower #','Threads Follower #', 'YouTube Subscriber #', 'TikTok Subscriber #')
+
+condensed_data[is.na(condensed_data)] <- 0
+
+
+colnames(condensed_data) <- c('Parent_entity','Region_of_focus','X_follower_count','Meta_follower_count','Instagram_follower_count','Threads_follower_count', 'Youtube_follower_count', 'Tiktok_follower_count' )
+
+
+condensed_data <- condensed_data %>% mutate(total_followers = X_follower_count + Meta_follower_count + Instagram_follower_count + Threads_follower_count + Youtube_follower_count + Tiktok_follower_count )
+```
+
+```{r}
+# cleaning for visualization
+#condensed_data %>% group_by(Parent_entity) %>% summarise(number = sum(total_followers))
+condensed_data <- subset(condensed_data, Parent_entity != 'unknown')
+
+data_ang <- condensed_data %>% filter(Region_of_focus == 'Anglosphere')
+data_ang_df <- data_ang %>% group_by(Parent_entity) %>% summarise(followers = round(sum(log(total_followers))))
+
+data_ang_df <- data_ang_df %>% arrange(desc(followers)) %>% head(4)
+
+data_ang_df <- data_ang_df %>% mutate(follower_percent = round((followers/sum(followers))*100))
+
+
+```
+
+
+```{r}
+tree_map <- ggplot(data = data_ang_df, aes(fill = Parent_entity, area = follower_percent, label = paste0(Parent_entity,"\n", follower_percent,'%'))) + geom_treemap() + geom_treemap_text(colour ="black", place = "centre") + theme(legend.position = "none") + labs(title = 'Share of influence of parent entities in the Anglosphere') 
+
+tree_map
+
+```
+
