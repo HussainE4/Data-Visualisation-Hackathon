@@ -1,4 +1,4 @@
-# Data-Visualisation-Hackathon
+# DataVisualisation Hackathon - "China Unveiled: The Secret Social Media Giant"
 This repository contain's our team's submission to the CANIS Data Visualization and Foreign Interference Hackathon.
 
 # Data
