@@ -10,4 +10,4 @@ Our goal was to showcase the scale of China's social media prescence. We did thi
 In our project, we added together the social media followers of various actors assocaiated with each of these entities and plotted them using the "pandas" and "matplotlib" libraries
 
 # Usage
-The plot_entity_regions.py file is used for plotting the regional breakdown for a given parent entity from the dataset
+The plot_entity_regions.py file is used for plotting the regional breakdown for a given parent entity from the dataset. Run the file and input an entity to see the results
