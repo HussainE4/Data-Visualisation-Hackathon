@@ -12,3 +12,8 @@ You can view our results at https://rickshaltzv2.github.io/
 
 # Usage
 The plot_entity_regions.py file is used for plotting the regional breakdown for a given parent entity from the dataset. Run the file and input an entity to see the results
+
+The EntityGraph.py file is used for creating plotting the number of followers of actors associated with the main Chinese parent entities and major English news organisations. Run the file to see the results
+
+The CANIS_data_viz_code.Rmd file is used for showcasing the distribution of the major Chinese parent entities with regards to follower counts in the Anglosphere. Run the file to see the visualisation.
+
