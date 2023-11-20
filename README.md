@@ -11,6 +11,8 @@ In our project, we added together the social media followers of various actors a
 You can view our results at https://rickshaltzv2.github.io/
 
 # Usage
+Note: For both the python files, you must first install the dependencies in requirements.txt
+
 The plot_entity_regions.py file is used for plotting the regional breakdown for a given parent entity from the dataset. Run the file and input an entity to see the results
 
 The EntityGraph.py file is used for creating plotting the number of followers of actors associated with the main Chinese parent entities and major English news organisations. Run the file to see the results
